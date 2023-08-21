@@ -6,9 +6,74 @@
     <description>Recent content on Luka&#39;s Attic</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 21 Aug 2023 18:13:25 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 21 Aug 2023 22:33:12 +0200</lastBuildDate>
     
 	<atom:link href="http://luka.ljudi.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Super Basic Git Starter</title>
+      <link>http://luka.ljudi.org/posts/super-basic-git-starter/</link>
+      <pubDate>Mon, 21 Aug 2023 22:33:12 +0200</pubDate>
+      
+      <guid>http://luka.ljudi.org/posts/super-basic-git-starter/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;This page is a WIP. I plan on updating in sometimes in the future
+You noticed a mistake? Send me a mail at &lt;code&gt;luka [at] ljudi [dot] org&lt;/code&gt;. Thanks!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;what-even-is-git&#34;&gt;What even is git?&lt;/h1&gt;
+&lt;p&gt;Git is a FOSS distrubuted version control system.&lt;/p&gt;
+&lt;p&gt;Or, to put it simply, a tool to keep a track of changes on your projects (mostly programming projects, but git works on non-text files too).&lt;/p&gt;
+&lt;h2 id=&#34;show-me&#34;&gt;Show me&lt;/h2&gt;
+&lt;p&gt;First - install &lt;a href=&#34;https://git-scm.com/&#34;&gt;git&lt;/a&gt;. On Arch (if you use &lt;code&gt;paru&lt;/code&gt;), you can just run &lt;code&gt;paru -S git&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Then create a directory for your project and initialize the git repository inside of it.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git init
+git config user.email &amp;#34;user@example.org&amp;#34;
+git config user.name &amp;#34;Linus Torvalds&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;Alternative would be to clone a repository from a remote device (github for example); in that case you would use &lt;code&gt;git clone &amp;lt;url&amp;gt;&lt;/code&gt; instead of creating directory and running &lt;code&gt;git ini&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This sets up a git repository in your project directory. Now you can start creating filles, editing them, and so on.&lt;/p&gt;
+&lt;p&gt;Then you can create a repository on some git forge, like &lt;a href=&#34;github.com&#34;&gt;github&lt;/a&gt; or &lt;a href=&#34;codeberg.org&#34;&gt;codeberg&lt;/a&gt;. When you do that, you will get a url that will point to that repository. Now you need to set remote url of your local project to that remote repository.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You don&amp;rsquo;t need to do this if you cloned a directory.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git remote add origin &amp;lt;url&amp;gt;
+git branch -M main
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now, after you stage and commit your changes, you can push them to the remote repository.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git add .
+git commit
+git push -u origin main
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;That&amp;rsquo;s about it for the start.&lt;/p&gt;
+&lt;h2 id=&#34;stage-commit&#34;&gt;Stage!? Commit?!&lt;/h2&gt;
+&lt;p&gt;At every moment, there are 3 &amp;rsquo;trees&amp;rsquo; in your git project:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;working directory -&amp;gt; holds actual files&lt;/li&gt;
+&lt;li&gt;index (stage) -&amp;gt; staging area (tree with changes)&lt;/li&gt;
+&lt;li&gt;HEAD -&amp;gt; points to the last commit&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git add . # adds all files from the $(pwd) to the staging area
+git add &amp;lt;filename&amp;gt; # adds only a specific file to the staging area
+git commit # creates a &amp;#39;snapshot&amp;#39; of the project
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And as for &lt;code&gt;git push&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;origin&lt;/code&gt; is a remote location (you can have multiple of these), and&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main&lt;/code&gt; is a branch (you can also have multiple of these)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;what-about-configuration&#34;&gt;What about configuration?&lt;/h2&gt;
+&lt;p&gt;I prefer adding a name and email separately for each project (io. not having a global email and name), so I can handle multiple accounts more easily.&lt;/p&gt;
+&lt;p&gt;And this is my tiny git config (stored in &amp;ldquo;$XDG_CONFIG_HOME/git/config&amp;rdquo;)&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[core]
+    editor = nvim
+[init]
+    defaultBranch = main
+[color]
+    ui = true
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;i-want-more&#34;&gt;I want more!!&lt;/h3&gt;
+&lt;p&gt;This is it for this time, but you can definitely check out the tutorial on the git&amp;rsquo;s website. Enjoy!&lt;/p&gt;
+</description>
+    </item>
     
     
     
