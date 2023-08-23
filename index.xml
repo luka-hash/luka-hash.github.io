@@ -18,8 +18,7 @@
       <pubDate>Tue, 22 Aug 2023 23:55:30 +0200</pubDate>
       
       <guid>http://luka.ljudi.org/posts/tar-for-humans/</guid>
-      <description>&lt;h1 id=&#34;tar-for-humans&#34;&gt;Tar for humans&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;tar&lt;/code&gt; is a command used to convert a file or a group of files into an archive. It can also do other stuff with those archives, like listing the files inside the archive, extracting files, etc.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;code&gt;tar&lt;/code&gt; is a command used to convert a file or a group of files into an archive. It can also do other stuff with those archives, like listing the files inside the archive, extracting files, etc.&lt;/p&gt;
 &lt;p&gt;To put it simply, at some point in your life as a linux (or unix) user/developer, you will need to use &lt;code&gt;tar&lt;/code&gt;,  either to compress some files and send them to someone or to extract files someone sent to you.&lt;/p&gt;
 &lt;p&gt;My plan for this guide is not only to give you the commands you need to use, but to actually explain those commands, so you don&amp;rsquo;t have to reread this (or any other) guide again. With that in mind, we will be using GNU-style options, or long-form options. Why? Is it obvious what this option does?&lt;/p&gt;
 &lt;blockquote&gt;
