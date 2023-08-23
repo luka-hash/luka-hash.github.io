@@ -152,11 +152,12 @@ You noticed a mistake? Send me a mail at &lt;code&gt;luka [at] ljudi [dot] org&l
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;closing-notes&#34;&gt;Closing notes&lt;/h3&gt;
 &lt;p&gt;If you are reading this, it means that the article is not fully done. The following is a list of topics that I plan to cover in the foreseeable future.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;[] branches&lt;/li&gt;
-&lt;li&gt;[] config&lt;/li&gt;
-&lt;li&gt;[] diff-ing&lt;/li&gt;
-&lt;li&gt;[] merging&lt;/li&gt;
-&lt;li&gt;[] collaborating efficiently&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; install and init a repo&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; branches&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; config&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; diff-ing&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; merging&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; collaborating efficiently&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Stay tuned! Cheers!&lt;/p&gt;
 </description>
