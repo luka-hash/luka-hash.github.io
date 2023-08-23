@@ -19,13 +19,14 @@
       
       <guid>http://luka.ljudi.org/posts/tar-for-humans/</guid>
       <description>&lt;p&gt;&lt;code&gt;tar&lt;/code&gt; is a command used to convert a file or a group of files into an archive. It can also do other stuff with those archives, like listing the files inside the archive, extracting files, etc.&lt;/p&gt;
-&lt;p&gt;To put it simply, at some point in your life as a linux (or unix) user/developer, you will need to use &lt;code&gt;tar&lt;/code&gt;,  either to compress some files and send them to someone or to extract files someone sent to you.&lt;/p&gt;
+&lt;p&gt;To put it simply, at some point in your life as a linux/unix user/developer, you will need to use &lt;code&gt;tar&lt;/code&gt;,  either to compress some files and send them to someone or to extract the files someone sent to you.&lt;/p&gt;
 &lt;p&gt;My plan for this guide is not only to give you the commands you need to use, but to actually explain those commands, so you don&amp;rsquo;t have to reread this (or any other) guide again. With that in mind, we will be using GNU-style options, or long-form options. Why? Is it obvious what this option does?&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;All user commands are prepended with &lt;code&gt;$&lt;/code&gt; and all sudo commands are prepended with &lt;code&gt;#&lt;/code&gt;. Commands that start with &lt;code&gt;$ #&lt;/code&gt; are still user commands, but they are comments, they are not to be pasted&lt;/p&gt;
+&lt;p&gt;All user commands are prepended with &amp;lsquo;$&amp;rsquo; and all sudo commands are prepended with &amp;lsquo;#&amp;rsquo;. Commands that start with &amp;lsquo;$ #&amp;rsquo; are still user commands, but they are comments, they are not to be pasted&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ tar -tavf example.tar.gz
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;using-tar&#34;&gt;Using tar&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;No? That is why. :)&lt;/p&gt;
+&lt;h2 id=&#34;using-tar&#34;&gt;Using tar&lt;/h2&gt;
 &lt;p&gt;For the purposes of this guide, I created a &lt;code&gt;demo&lt;/code&gt; directory (in my $HOME) and copied the content of the go-build directory into it:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cd
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ mkdir demo
@@ -45,7 +46,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;drwxr-xr-x &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; luka luka   &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; Aug &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 09:39 &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;drwxr-xr-x &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; luka luka   &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; Aug &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 09:39 &lt;span style=&#34;color:#ae81ff&#34;&gt;08&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Actual otput is bigger, I only copied a first 10 lines of it.&lt;/p&gt;
+&lt;p&gt;Actual otput is bigger, I only copied the first 10 lines of it.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Now to create an archive containing all those files, we can run this:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ tar --create --verbose --auto-compress --file go-build.tar.gz ./*
