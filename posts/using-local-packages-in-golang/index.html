@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Just a small in-between blog">
+    
+    <link rel="shortcut icon" href="http://luka.ljudi.org/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    <link rel="canonical" href="http://luka.ljudi.org/posts/using-local-packages-in-golang/" />
+    <title>Using Local Packages in Golang</title>
+</head>
+<body><header id="banner">
+    <h2><a href="http://luka.ljudi.org/">Luka&#39;s Attic</a></h2>
+    <nav>
+        <ul>
+            <li>
+                <a href="/" title="posts">posts</a>
+            </li><li>
+                <a href="/about/" title="about">about</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Using Local Packages in Golang</h1>
+        <div>
+                <time>August 23, 2023</time>
+            </div>
+    </header><p>Sometimes, whilst developing Go libraries, I want to test stuff, but not the correctness; no, I want to test the interface (not related to Go&rsquo;s interfaces). What does it mean? It means that I want to play with the library to see how it feels to use it.</p>
+<p>And since Go has a specific way of handling dependencies, it might not be obvious how to use library B inside the program (or another library, even) A without uploading the code on the network. At least it wasn&rsquo;t obvious to me.</p>
+<blockquote>
+<p>I&rsquo;m pretty sure there is a guide somewhere on the Go&rsquo;s official documentation page, but still&hellip; more the merrier.</p>
+</blockquote>
+<h3 id="actual-guide">Actual guide</h3>
+<p>Imagine our library is called B. We create a directory and initialize the Go module inside of it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cd <span style="color:#75715e"># just to go to $HOME :)</span>
+</span></span><span style="display:flex;"><span>$ mkdir demo <span style="color:#f92672">&amp;&amp;</span> cd demo
+</span></span><span style="display:flex;"><span>$ mkdir B <span style="color:#f92672">&amp;&amp;</span> cd B
+</span></span><span style="display:flex;"><span>$ go mod init B
+</span></span></code></pre></div><p>Now, we can write a library logic in side of a <code>main.go</code> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Greet</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hi &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Don&rsquo;t forget to capitalize functions and variables you want to export :)</p>
+</blockquote>
+<p>Now, we can create a module in which we are going to do the tests and experiments.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cd <span style="color:#75715e"># just to go to $HOME</span>
+</span></span><span style="display:flex;"><span>$ cd demo
+</span></span><span style="display:flex;"><span>$ mkdir A <span style="color:#f92672">&amp;&amp;</span> cd A
+</span></span><span style="display:flex;"><span>$ go mod init A
+</span></span></code></pre></div><p>And after we write our code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">lib</span> <span style="color:#e6db74">&#34;B&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">lib</span>.<span style="color:#a6e22e">Greet</span>(<span style="color:#e6db74">&#34;Dante&#34;</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>There is only one thing left to do:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ go mod edit -replace B<span style="color:#f92672">=</span>/home/luka/demo/B
+</span></span><span style="display:flex;"><span>$ go mod tidy
+</span></span><span style="display:flex;"><span>$ go run main.go
+</span></span></code></pre></div><h3 id="conclusions-and-closing-notes">Conclusions and closing notes</h3>
+<p>It wasn&rsquo;t that hard? There is definitely some getting used to, but it&rsquo;s manageable.</p>
+<p>As per usual, if you find any errors, send me a mail at luka [at] ljudi [dot] org. Cheers!</p>
+</article>
+
+        </main><footer id="footer">
+    Copyright © 2023 Luka Ivanović
+</footer>
+</body>
+</html>
