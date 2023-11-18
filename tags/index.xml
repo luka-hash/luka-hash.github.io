@@ -12,6 +12,60 @@
     
     
     <item>
+      <title>Python - rulebook</title>
+      <link>http://luka.ljudi.org/posts/python-rulebook/</link>
+      <pubDate>Sat, 18 Nov 2023 02:25:49 +0100</pubDate>
+      
+      <guid>http://luka.ljudi.org/posts/python-rulebook/</guid>
+      <description>&lt;p&gt;Fortunately or not, python is unavoidable. So we need some rules to keep ourselves sane while using it.&lt;/p&gt;
+&lt;h2 id=&#34;xdg-and-home-dir&#34;&gt;XDG and home dir&lt;/h2&gt;
+&lt;p&gt;First, let&amp;rsquo;s remove the clutter:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create &lt;code&gt;startup.py&lt;/code&gt; file at &lt;code&gt;&amp;quot;$XDG_CONFIG_HOME&amp;quot;/python/&lt;/code&gt; and add the following code:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; atexit
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; readline
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;histfile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cachedir &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;getenv(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;XDG_CACHE_HOME&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; cachedir &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cachedir &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;expanduser(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;~&amp;#34;&lt;/span&gt;) 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    histfile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(cachedir, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;history&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    histfile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(cachedir,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;history&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hist_len &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    readline&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;read_history_file(histfile)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    hist_len &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; readline&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_current_history_length()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;FileNotFoundError&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    open(histfile, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;save&lt;/span&gt;(prev_hist_len, histfile):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    new_hist_len &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; readline&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_current_history_length()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    readline&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;set_history_length(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    readline&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append_history_file(new_hist_len &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; prev_hist_len, histfile)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;atexit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;register(save, hist_len, histfile)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Add (or export) &lt;code&gt;PYTHONSTARTUP&lt;/code&gt; variable, i.e. &lt;code&gt;export PYTHONSTARTUP=&amp;quot;$XDG_CONFIG_HOME&amp;quot;/python/startup.py&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Create &lt;code&gt;history&lt;/code&gt; file at &lt;code&gt;&amp;quot;$XDG_CACHE_HOME&amp;quot;/python/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Reload the environment (logout should work)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;virtual-environments&#34;&gt;Virtual environments&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;You must use virtual environments for all your python development. It is not optional.&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ python -m venv env
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ source env/bin/activate.fish &lt;span style=&#34;color:#75715e&#34;&gt;# depending on the shell of choice&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ pip install number &lt;span style=&#34;color:#75715e&#34;&gt;# e.g.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ pip freeze &amp;gt; requirements.txt &lt;span style=&#34;color:#75715e&#34;&gt;# to list all dependencies and their version into a file&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ pip install -r requirements.txt &lt;span style=&#34;color:#75715e&#34;&gt;# to install all required dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    
+    
+    <item>
       <title>Using Local Packages in Golang</title>
       <link>http://luka.ljudi.org/posts/using-local-packages-in-golang/</link>
       <pubDate>Wed, 23 Aug 2023 13:41:32 +0200</pubDate>
@@ -197,13 +251,13 @@ You noticed a mistake? Send me a mail at &lt;code&gt;luka [at] ljudi [dot] org&l
 &lt;h2 id=&#34;what-about-configuration&#34;&gt;What about configuration?&lt;/h2&gt;
 &lt;p&gt;I prefer adding a name and email separately for each project (io. not having a global email and name), so I can handle multiple accounts more easily.&lt;/p&gt;
 &lt;p&gt;And this is my tiny git config (stored in &amp;ldquo;$XDG_CONFIG_HOME/git/config&amp;rdquo;)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;[&lt;/span&gt;core&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    editor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nvim
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;[&lt;/span&gt;init&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    defaultBranch &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; main
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;[&lt;/span&gt;color&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ui &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;closing-notes&#34;&gt;Closing notes&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[core]
+    editor = nvim
+[init]
+    defaultBranch = main
+[color]
+    ui = true
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;closing-notes&#34;&gt;Closing notes&lt;/h3&gt;
 &lt;p&gt;If you are reading this, it means that the article is not fully done. The following is a list of topics that I plan to cover in the foreseeable future.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; install and init a repo&lt;/li&gt;
