@@ -1,48 +1,51 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Just a small in-between blog">
-    
-    <link rel="shortcut icon" href="http://luka.ljudi.org/favicon.ico">
-    
+    <link rel="icon" href="https://luka.ljudi.org/favicon.ico">
     <link rel="stylesheet" href="/css/style.min.css">
-
-    <link rel="canonical" href="http://luka.ljudi.org/posts/python-rulebook/" />
+    <link rel="canonical" href="https://luka.ljudi.org/posts/python-rulebook/">
     <title>Python - rulebook</title>
-</head>
-<body><header id="banner">
-    <h2><a href="http://luka.ljudi.org/">Luka&#39;s Attic</a></h2>
-    <nav>
+  </head>
+  <body>
+    <header id="banner">
+      <h2><a href="https://luka.ljudi.org/">Luka&#39;s Attic</a></h2>
+      <nav>
         <ul>
-            <li>
-                <a href="/" title="posts">posts</a>
-            </li><li>
-                <a href="/about/" title="about">about</a>
-            </li>
+          <li>
+            <a href="/" title="posts">posts</a>
+          </li><li>
+            <a href="/about/" title="about">about</a>
+          </li>
         </ul>
-    </nav>
-</header>
-<main id="content">
-<article>
-    <header id="post-header">
-        <h1>Python - rulebook</h1>
-        <div>
-                <time>November 18, 2023</time>
-            </div>
-    </header><p>Fortunately or not, python is unavoidable. So we need some rules to keep ourselves sane while using it.</p>
-<h2 id="xdg-and-home-dir">XDG and home dir</h2>
-<p>First, let&rsquo;s remove the clutter:</p>
-<ul>
-<li>Create <code>startup.py</code> file at <code>&quot;$XDG_CONFIG_HOME&quot;/python/</code> and add the following code:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> atexit
+      </nav>
+    </header>
+    <main id="content">
+      <article>
+        <header id="post-header">
+          <h1>Python - rulebook</h1>
+          <div>
+            <time>November 18, 2023</time>
+          </div>
+        </header><p>Fortunately or not, python is unavoidable. So we need some rules to keep ourselves sane while using it.</p>
+        <h2 id="xdg-and-home-dir">XDG and home dir</h2>
+        <p>First, let&rsquo;s remove the clutter:</p>
+        <ul>
+          <li>Create
+            <code>startup.py</code>
+            file at
+            <code>&quot;$XDG_CONFIG_HOME&quot;/python/</code>
+            and add the following code:
+            <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> atexit
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> readline
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>histfile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>cachedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;XDG_CACHE_HOME&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> cachedir <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>:
-</span></span><span style="display:flex;"><span>    cachedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>expanduser(<span style="color:#e6db74">&#34;~&#34;</span>) 
+</span></span><span style="display:flex;"><span>    cachedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>expanduser(<span style="color:#e6db74">&#34;~&#34;</span>)
 </span></span><span style="display:flex;"><span>    histfile <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(cachedir, <span style="color:#e6db74">&#34;history&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
 </span></span><span style="display:flex;"><span>    histfile <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(cachedir,<span style="color:#e6db74">&#34;python&#34;</span>,<span style="color:#e6db74">&#34;history&#34;</span>)
@@ -62,26 +65,32 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>atexit<span style="color:#f92672">.</span>register(save, hist_len, histfile)
 </span></span></code></pre></div></li>
-<li>Add (or export) <code>PYTHONSTARTUP</code> variable, i.e. <code>export PYTHONSTARTUP=&quot;$XDG_CONFIG_HOME&quot;/python/startup.py</code></li>
-<li>Create <code>history</code> file at <code>&quot;$XDG_CACHE_HOME&quot;/python/</code></li>
-<li>Reload the environment (logout should work)</li>
-</ul>
-<h2 id="virtual-environments">Virtual environments</h2>
-<p><em>You must use virtual environments for all your python development. It is not optional.</em></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ python -m venv env
+          <li>Add (or export)
+            <code>PYTHONSTARTUP</code>
+            variable, i.e.
+            <code>export PYTHONSTARTUP=&quot;$XDG_CONFIG_HOME&quot;/python/startup.py</code></li>
+          <li>Create
+            <code>history</code>
+            file at
+            <code>&quot;$XDG_CACHE_HOME&quot;/python/</code></li>
+          <li>Reload the environment (logout should work)</li>
+        </ul>
+        <h2 id="virtual-environments">Virtual environments</h2>
+        <p><em>You must use virtual environments for all your python development. It is not optional.</em></p>
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ python -m venv env
 </span></span><span style="display:flex;"><span>$ source env/bin/activate.fish <span style="color:#75715e"># depending on the shell of choice</span>
 </span></span><span style="display:flex;"><span>$ pip install number <span style="color:#75715e"># e.g.</span>
 </span></span><span style="display:flex;"><span>$ pip freeze &gt; requirements.txt <span style="color:#75715e"># to list all dependencies and their version into a file</span>
 </span></span><span style="display:flex;"><span>$ pip install -r requirements.txt <span style="color:#75715e"># to install all required dependencies</span>
-</span></span></code></pre></div></article>
-
-        </main><div id="webring">
-  <a href="https://webring.ljudi.org/previous?member=https://luka.ljudi.org">Previous</a>
-  <a href="https://webring.ljudi.org/im-feeling-lucky">I'm feeling lucky!</a>
-  <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
-</div>
-<footer id="footer">
-    Copyright © 2023 Luka Ivanović
-</footer>
-</body>
+</span></span></code></pre></div>
+      </article>
+    </main><div id="webring">
+      <a href="https://webring.ljudi.org/previous?member=https://luka.ljudi.org">Previous</a>
+      <a href="https://webring.ljudi.org/im-feeling-lucky">I'm feeling lucky!</a>
+      <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
+    </div>
+    <footer id="footer">
+      Copyright © 2023 Luka Ivanović
+    </footer>
+  </body>
 </html>
