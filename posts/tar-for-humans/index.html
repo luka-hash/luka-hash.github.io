@@ -10,62 +10,54 @@
     <title>Tar for Humans</title>
   </head>
   <body>
-    <header id="banner">
-      <h2><a href="https://luka.ljudi.org/">Luka&#39;s web attic</a></h2>
-      <nav>
-        <ul>
-          <li>
-            <a href="/" title="posts">posts</a>
-          </li><li>
-            <a href="/about/" title="about">about</a>
-          </li>
-        </ul>
-      </nav>
+    <header>
+      <h1>
+        <a href="/">Luka&#39;s web attic</a>
+      </h1>
+      <a href="/about/" title="about">about</a>
     </header>
-    <main id="content">
+    <main>
       <article>
-        <header id="post-header">
-          <h1>Tar for Humans</h1>
-          <div>
-            <time>August 22, 2023</time>
-          </div>
-        </header><p><code>tar</code>
+        <h1>Tar for Humans</h1>
+        <time>August 22, 2023</time>
+        <blockquote>
+          All user commands are prepended with &lsquo;$&rsquo; and all sudo commands are prepended with &lsquo;#&rsquo;. Commands that start with &lsquo;$ #&rsquo; are still user commands, but they are comments, they are not to be pasted.
+        </blockquote>
+        <p><code>tar</code>
           is a command used to convert a file or a group of files into an archive. It can also do other stuff with those archives, like listing the files inside the archive, extracting files, etc.</p>
-        <p>To put it simply, at some point in your life as a linux/unix user/developer, you will need to use
+        <p>To put it simply, at some point in your life as a linux/unix user, you will need to use
           <code>tar</code>,  either to compress some files and send them to someone or to extract the files someone sent to you.</p>
         <p>My plan for this guide is not only to give you the commands you need to use, but to actually explain those commands, so you don&rsquo;t have to reread this (or any other) guide again. With that in mind, we will be using GNU-style options, or long-form options. Why? Is it obvious what this option does?</p>
-        <blockquote>
-          <p>All user commands are prepended with &lsquo;$&rsquo; and all sudo commands are prepended with &lsquo;#&rsquo;. Commands that start with &lsquo;$ #&rsquo; are still user commands, but they are comments, they are not to be pasted</p>
-        </blockquote>
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ tar -tavf example.tar.gz
-</span></span></code></pre></div><p>No? That is why. :)</p>
-        <h2 id="using-tar">Using tar</h2>
-        <p>For the purposes of this guide, I created a
+        <pre>$ tar -tavf example.tar.gz</pre>
+        <p>No? That is why. :)</p>
+        <h2>Using tar</h2>
+        <p>For the purposes of this guide, I created a simple
           <code>demo</code>
-          directory (in my $HOME) and copied the content of the go-build directory into it:</p>
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cd
-</span></span><span style="display:flex;"><span>$ mkdir demo
-</span></span><span style="display:flex;"><span>$ cp -r .cache/go-build/* demo/
-</span></span><span style="display:flex;"><span>$ cd demo/
-</span></span><span style="display:flex;"><span>$ ls -l
-</span></span></code></pre></div><p>and this is the output:</p>
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ ls -l
-</span></span><span style="display:flex;"><span>total <span style="color:#ae81ff">8</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">00</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">01</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">02</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">03</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">04</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">05</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">06</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">07</span>
-</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">1</span> luka luka   <span style="color:#ae81ff">0</span> Aug <span style="color:#ae81ff">23</span> 09:39 <span style="color:#ae81ff">08</span>
-</span></span></code></pre></div><blockquote>
-          <p>Actual otput is bigger, I only copied the first 10 lines of it.</p>
+          directory (in my
+          <code>$HOME</code>) and copied the content of the go-build directory into it:</p>
+        <pre>$ cd
+$ mkdir demo
+$ cp -r .cache/go-build/* demo/
+$ cd demo/
+$ ls -l</pre>
+        <p>and this is the output:</p>
+        <pre>$ ls -l
+total 8
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 00
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 01
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 02
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 03
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 04
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 05
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 06
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 07
+drwxr-xr-x 1 luka luka   0 Aug 23 09:39 08</pre>
+        <blockquote>
+          Actual otput is bigger, I only copied the first 10 lines of it.
         </blockquote>
         <p>Now to create an archive containing all those files, we can run this:</p>
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ tar --create --verbose --auto-compress --file go-build.tar.gz ./*
-</span></span></code></pre></div><p>This will:</p>
+        <pre>$ tar --create --verbose --auto-compress --file go-build.tar.gz ./*</pre>
+        <p>This will:</p>
         <ol>
           <li>create an archive (<code>--create</code>)</li>
           <li>print a list of files that are being archived (<code>--verbose</code>)</li>
@@ -77,10 +69,10 @@
           <li>put all the files from the current directory in the archive (<code>./*</code>)</li>
         </ol>
         <p>Now that you have an archive, you can do anything with it, like - list the content of the archive:</p>
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ tar --list --verbose --file go-build.tar.gz
-</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># or</span>
-</span></span><span style="display:flex;"><span>$ tar --list --file go-build.tar.gz
-</span></span></code></pre></div><p>Using
+        <pre>$ tar --list --verbose --file go-build.tar.gz
+$ # or
+$ tar --list --file go-build.tar.gz</pre>
+        <p>Using
           <code>--verbose</code>
           options will report file permissions and ownership alongside of file names.
 Now that you have
@@ -88,18 +80,18 @@ Now that you have
           (in a way, at least) that all your files are archived, you should probably generate a
           <em>sum</em>
           of that file, so you can later verify that it is indeed that file.</p>
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sha256sum go-build.tar.gz &gt; go-build.tar.gz.sha256
-</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># and later you can check the integrity like so:</span>
-</span></span><span style="display:flex;"><span>$ sha256sum --check go-build.tar.gz.sha256
-</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># it should print `go-build.tar.gz: OK`</span>
-</span></span></code></pre></div><p>And finally, when you decide to extract files from the archive, you can use this command:</p>
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ tar --extract --verbose --auto-compress --file go-build.tar.gz
-</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># this will extract the archive in the current working directory</span>
-</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># in the case you want to extract it in another directory, you can do it like so:</span>
-</span></span><span style="display:flex;"><span>$ mkdir go-build <span style="color:#f92672">&amp;&amp;</span> tar --extract --verbose --auto-compress --directory go-build/ --file go-build.tar.gz
-</span></span></code></pre></div><p>And that&rsquo;s about it. Now you know how to use
+        <pre>$ sha256sum go-build.tar.gz &gt; go-build.tar.gz.sha256
+$ # and later you can check the integrity like so:
+$ sha256sum --check go-build.tar.gz.sha256
+$ # it should print `go-build.tar.gz: OK`</pre>
+        <p>And finally, when you decide to extract files from the archive, you can use this command:</p>
+        <pre>$ tar --extract --verbose --auto-compress --file go-build.tar.gz
+$ # this will extract the archive in the current working directory
+$ # in the case you want to extract it in another directory, you can do it like so:
+$ mkdir go-build &amp;&amp; tar --extract --verbose --auto-compress --directory go-build/ --file go-build.tar.gz</pre>
+        <p>And that&rsquo;s about it. Now you know how to use
           <code>tar</code>
-          to handle all (or at least 99%) of your day-to-day tasks. Of course, there are other options (many such options), some of them including (but not limited to):</p>
+          to handle most of your day-to-day tasks. Of course, there are other options (many such options), some of them including (but not limited to):</p>
         <ul>
           <li><code>--append</code>
             : this adds a file to the existing archive (but the archive can not be compressed); e.g.
@@ -123,7 +115,7 @@ Now that you have
             to treat situations where it tries to extract a file X into a directory where another file named X already exists as non-errors, but to skip them silently</li>
         </ul>
         <p>You also have the option to: update files, diff the archive and the filesystem, concatenate tar files to an archive, exclude specific files by name or pattern (or even from .gitignore and other vcs tools), follow hard and soft links and archive the files they point/refer to, extract files to stdout, etc.</p>
-        <h3 id="closing-notes">Closing notes</h3>
+        <h2>Closing notes</h2>
         <p>This is it for today. I hope you find this guide useful. As per usual, if you find any errors, send me a mail at
           <code>luka [at] ljudi [dot] org</code>. Cheers!</p>
       </article>
@@ -133,7 +125,7 @@ Now that you have
       <a href="https://webring.ljudi.org/im-feeling-lucky">I'm feeling lucky!</a>
       <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
     </div>
-    <footer id="footer">
+    <footer>
       Copyright © 2023-2025 Luka Ivanović
     </footer>
   </body>
