@@ -83,7 +83,6 @@ a[href^="https"]::after {
 
 a:hover {
     text-shadow: 0 0 2px var(--text-color);
-    transform: translateY(20px);
 }
 
 #webring {
