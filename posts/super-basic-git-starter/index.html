@@ -1,109 +1,129 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Just a small in-between blog">
-    
-    <link rel="shortcut icon" href="http://luka.ljudi.org/favicon.ico">
-    
-    <link rel="stylesheet" href="/css/style.min.css">
-
-    <link rel="canonical" href="http://luka.ljudi.org/posts/super-basic-git-starter/" />
-    <title>Super Basic Git Starter</title>
-</head>
-<body><header id="banner">
-    <h2><a href="http://luka.ljudi.org/">Luka&#39;s Attic</a></h2>
-    <nav>
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="https://luka.ljudi.org/posts/super-basic-git-starter/">
+    <title>Super basic Git starter</title>
+  </head>
+  <body>
+    <header id="banner">
+      <h2><a href="http://luka.ljudi.org/">Luka&#39;s web attic</a></h2>
+      <nav>
         <ul>
-            <li>
-                <a href="/" title="posts">posts</a>
-            </li><li>
-                <a href="/about/" title="about">about</a>
-            </li>
+          <li>
+            <a href="/" title="posts">posts</a>
+          </li><li>
+            <a href="/about/" title="about">about</a>
+          </li>
         </ul>
-    </nav>
-</header>
-<main id="content">
-<article>
-    <header id="post-header">
-        <h1>Super Basic Git Starter</h1>
-        <div>
-                <time>August 21, 2023</time>
-            </div>
-    </header><blockquote>
-<p>This page is a WIP. I plan on updating it time-to-time.
-You noticed a mistake? Send me a mail at <code>luka [at] ljudi [dot] org</code>. Cheers!</p>
-</blockquote>
-<h1 id="what-is-git">What is git?</h1>
-<p>Git is a FOSS distributed version control system.</p>
-<p>Or, to put it simply, a tool to keep a track of changes on your projects (mostly programming projects, but git works on non-text files too).</p>
-<h2 id="show-me">Show me</h2>
-<p>First - install <a href="https://git-scm.com/">git</a>. On Arch (if you use <code>paru</code>), you can just run <code>paru -S git</code>.</p>
-<p>Then create a directory for your project and initialize the git repository inside of it.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git init
+      </nav>
+    </header>
+    <main id="content">
+      <article>
+        <header id="post-header">
+          <h1>Super basic Git starter</h1>
+          <div>
+            <time>August 21, 2023</time>
+          </div>
+        </header>
+        <blockquote>
+          <p>This page is a WIP. I plan on updating it time-to-time.
+You noticed a mistake? Send me a mail at
+            <code>luka [at] ljudi [dot] org</code>. Cheers!</p>
+        </blockquote>
+        <h1 id="what-is-git">What is git?</h1>
+        <p>Git is a FOSS distributed version control system.</p>
+        <p>Or, to put it simply, a tool to keep a track of changes on your projects (mostly programming projects, but git works on non-text files too).</p>
+        <h2 id="show-me">Show me</h2>
+        <p>First - install
+          <a href="https://git-scm.com/">git</a>. On Arch (if you use
+          <code>paru</code>), you can just run
+          <code>paru -S git</code>.</p>
+        <p>Then create a directory for your project and initialize the git repository inside of it.</p>
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git init
 </span></span><span style="display:flex;"><span>$ git config user.email <span style="color:#e6db74">&#34;torvalds@linux-foundation.org&#34;</span>
 </span></span><span style="display:flex;"><span>$ git config user.name <span style="color:#e6db74">&#34;Linus Torvalds&#34;</span>
-</span></span></code></pre></div><p>An alternative would be to clone a repository from a remote device (github for example); in that case you would use <code>git clone &lt;url&gt;</code> instead of creating a directory and running <code>git init</code> inside of it.</p>
-<p>This sets up a git repository in your project directory. Now you can start creating files, editing them, and so on.</p>
-<p>Then you can create a repository on some git forge, like <a href="github.com">github</a> or <a href="codeberg.org">codeberg</a>. When you do that, you will get an url that will point to that repository. Now you need to set the remote url of your local project to that remote repository.</p>
-<blockquote>
-<p>You don&rsquo;t need to do this if you cloned a directory.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git remote add origin &lt;url&gt;
+</span></span></code></pre></div><p>An alternative would be to clone a repository from a remote device (github for example); in that case you would use
+          <code>git clone &lt;url&gt;</code>
+          instead of creating a directory and running
+          <code>git init</code>
+          inside of it.</p>
+        <p>This sets up a git repository in your project directory. Now you can start creating files, editing them, and so on.</p>
+        <p>Then you can create a repository on some git forge, like
+          <a href="github.com">github</a>
+          or
+          <a href="codeberg.org">codeberg</a>. When you do that, you will get an url that will point to that repository. Now you need to set the remote url of your local project to that remote repository.</p>
+        <blockquote>
+          <p>You don&rsquo;t need to do this if you cloned a directory.</p>
+        </blockquote>
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git remote add origin &lt;url&gt;
 </span></span><span style="display:flex;"><span>$ git branch -M main
 </span></span></code></pre></div><p>Now, after you stage and commit your changes, you can push them to the remote repository.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git add .
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git add .
 </span></span><span style="display:flex;"><span>$ git commit
 </span></span><span style="display:flex;"><span>$ git push -u origin main
 </span></span></code></pre></div><p>That&rsquo;s about it, at least for the start.</p>
-<h2 id="stage-commit">Stage!? Commit?!</h2>
-<p>If you are confused by some terms I mentioned, let me try to explain some things.</p>
-<p>At every moment, there are 3 &rsquo;trees&rsquo; in your git project:</p>
-<ol>
-<li>working directory : holds actual files</li>
-<li>index (stage) : staging area (tree with changes)</li>
-<li>HEAD : points to the last commit</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git add .
+        <h2 id="stage-commit">Stage!? Commit?!</h2>
+        <p>If you are confused by some terms I mentioned, let me try to explain some things.</p>
+        <p>At every moment, there are 3 &rsquo;trees&rsquo; in your git project:</p>
+        <ol>
+          <li>working directory : holds actual files</li>
+          <li>index (stage) : staging area (tree with changes)</li>
+          <li>HEAD : points to the last commit</li>
+        </ol>
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git add .
 </span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># adds all files from the $(pwd) to the staging area</span>
 </span></span><span style="display:flex;"><span>$ git add &lt;filename&gt;
 </span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># adds only a specific file to the staging area</span>
 </span></span><span style="display:flex;"><span>$ git commit
 </span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># creates a &#39;snapshot&#39; of the project</span>
-</span></span></code></pre></div><p>And as for <code>git push</code>:</p>
-<ul>
-<li><code>origin</code> is a remote location (you can have multiple of these), and</li>
-<li><code>main</code> is a branch (you can also have multiple of these)</li>
-</ul>
-<h2 id="what-about-configuration">What about configuration?</h2>
-<p>I prefer adding a name and email separately for each project (io. not having a global email and name), so I can handle multiple accounts more easily.</p>
-<p>And this is my tiny git config (stored in &ldquo;$XDG_CONFIG_HOME/git/config&rdquo;)</p>
-<pre tabindex="0"><code class="language-conf" data-lang="conf">[core]
+</span></span></code></pre></div><p>And as for
+          <code>git push</code>:</p>
+        <ul>
+          <li><code>origin</code>
+            is a remote location (you can have multiple of these), and</li>
+          <li><code>main</code>
+            is a branch (you can also have multiple of these)</li>
+        </ul>
+        <h2 id="what-about-configuration">What about configuration?</h2>
+        <p>I prefer adding a name and email separately for each project (io. not having a global email and name), so I can handle multiple accounts more easily.</p>
+        <p>And this is my tiny git config (stored in &ldquo;$XDG_CONFIG_HOME/git/config&rdquo;)</p>
+        <pre tabindex="0"><code class="language-conf" data-lang="conf">[core]
     editor = nvim
 [init]
     defaultBranch = main
 [color]
     ui = true
 </code></pre><h3 id="closing-notes">Closing notes</h3>
-<p>If you are reading this, it means that the article is not fully done. The following is a list of topics that I plan to cover in the foreseeable future.</p>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> install and init a repo</li>
-<li><input disabled="" type="checkbox"> branches</li>
-<li><input disabled="" type="checkbox"> config</li>
-<li><input disabled="" type="checkbox"> diff-ing</li>
-<li><input disabled="" type="checkbox"> merging</li>
-<li><input disabled="" type="checkbox"> collaborating efficiently</li>
-</ul>
-<p>Stay tuned! Cheers!</p>
-</article>
-
-        </main><div id="webring">
-  <a href="https://webring.ljudi.org/previous?member=https://luka.ljudi.org">Previous</a>
-  <a href="https://webring.ljudi.org/im-feeling-lucky">I'm feeling lucky!</a>
-  <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
-</div>
-<footer id="footer">
-    Copyright © 2023 Luka Ivanović
-</footer>
-</body>
+        <p>If you are reading this, it means that the article is not fully done. The following is a list of topics that I plan to cover in the foreseeable future.</p>
+        <ul>
+          <li><input checked="" disabled="" type="checkbox">
+            install and init a repo</li>
+          <li><input disabled="" type="checkbox">
+            branches</li>
+          <li><input disabled="" type="checkbox">
+            config</li>
+          <li><input disabled="" type="checkbox">
+            diff-ing</li>
+          <li><input disabled="" type="checkbox">
+            merging</li>
+          <li><input disabled="" type="checkbox">
+            collaborating efficiently</li>
+        </ul>
+        <p>Stay tuned! Cheers!</p>
+      </article>
+    </main>
+    <div id="webring">
+      <a href="https://webring.ljudi.org/previous?member=https://luka.ljudi.org">Previous</a>
+      <a href="https://webring.ljudi.org/im-feeling-lucky">I'm feeling lucky!</a>
+      <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
+    </div>
+    <footer id="footer">
+      Copyright © 2023-2025 Luka Ivanović
+    </footer>
+  </body>
 </html>
