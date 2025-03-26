@@ -73,6 +73,7 @@ time {
 
 a {
     text-decoration: underline;
+    transition: text-shadow 0.3s ease-in-out;
 }
 
 a[href^="https"]::after {
@@ -81,7 +82,8 @@ a[href^="https"]::after {
 }
 
 a:hover {
-    font-weight: bolder;
+    text-shadow: 0 0 2px var(--text-color);
+    transform: translateY(20px);
 }
 
 #webring {
