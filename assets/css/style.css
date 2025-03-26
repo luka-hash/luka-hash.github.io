@@ -90,3 +90,21 @@ a:hover {
     gap: 2rem;
     padding-top: 3rem;
 }
+
+blockquote {
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 4px solid var(--border-color);
+}
+
+code {
+    border: 1px dashed var(--border-color);
+    border-radius: 4px;
+    padding: 4px;
+}
+
+pre {
+    border: 1px dashed var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+}
