@@ -10,79 +10,76 @@
     <title>Python - rulebook</title>
   </head>
   <body>
-    <header id="banner">
-      <h2><a href="https://luka.ljudi.org/">Luka&#39;s web attic</a></h2>
-      <nav>
-        <ul>
-          <li>
-            <a href="/" title="posts">posts</a>
-          </li><li>
-            <a href="/about/" title="about">about</a>
-          </li>
-        </ul>
-      </nav>
+    <header>
+      <h1>
+        <a href="/">Luka&#39;s web attic</a>
+      </h1>
+      <a href="/about/" title="about">about</a>
     </header>
-    <main id="content">
+    <main>
       <article>
-        <header id="post-header">
-          <h1>Python - rulebook</h1>
-          <div>
-            <time>November 18, 2023</time>
-          </div>
-        </header><p>Fortunately or not, python is unavoidable. So we need some rules to keep ourselves sane while using it.</p>
-        <h2 id="xdg-and-home-dir">XDG and home dir</h2>
+        <h1>Python - rulebook</h1>
+        <time>November 18, 2023</time>
+        <p>Fortunately or not, python is unavoidable. So we need some rules to keep ourselves sane while using it.</p>
+        <h2>XDG and home dir</h2>
         <p>First, let&rsquo;s remove the clutter:</p>
         <ul>
           <li>Create
-            <code>startup.py</code>
-            file at
-            <code>&quot;$XDG_CONFIG_HOME&quot;/python/</code>
+            <code>$XDG_CONFIG_HOME/python/startup.py</code>
             and add the following code:
-            <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> atexit
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> readline
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>histfile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>cachedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;XDG_CACHE_HOME&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> cachedir <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>:
-</span></span><span style="display:flex;"><span>    cachedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>expanduser(<span style="color:#e6db74">&#34;~&#34;</span>)
-</span></span><span style="display:flex;"><span>    histfile <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(cachedir, <span style="color:#e6db74">&#34;history&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
-</span></span><span style="display:flex;"><span>    histfile <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(cachedir,<span style="color:#e6db74">&#34;python&#34;</span>,<span style="color:#e6db74">&#34;history&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>hist_len <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
-</span></span><span style="display:flex;"><span>    readline<span style="color:#f92672">.</span>read_history_file(histfile)
-</span></span><span style="display:flex;"><span>    hist_len <span style="color:#f92672">=</span> readline<span style="color:#f92672">.</span>get_current_history_length()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">FileNotFoundError</span>:
-</span></span><span style="display:flex;"><span>    open(histfile, <span style="color:#e6db74">&#39;wb&#39;</span>)<span style="color:#f92672">.</span>close()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">save</span>(prev_hist_len, histfile):
-</span></span><span style="display:flex;"><span>    new_hist_len <span style="color:#f92672">=</span> readline<span style="color:#f92672">.</span>get_current_history_length()
-</span></span><span style="display:flex;"><span>    readline<span style="color:#f92672">.</span>set_history_length(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>    readline<span style="color:#f92672">.</span>append_history_file(new_hist_len <span style="color:#f92672">-</span> prev_hist_len, histfile)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>atexit<span style="color:#f92672">.</span>register(save, hist_len, histfile)
-</span></span></code></pre></div></li>
+            <pre>import atexit
+import os
+import readline
+
+cachedir = os.getenv(&quot;XDG_CONFIG_HOME&quot;)
+histdir = &quot;&quot;
+if cachedir == &quot;&quot;:
+    cachedir = os.path.expanduser(&quot;~&quot;)
+    histdir = os.path.join(cachedir, &quot;.config&quot;, &quot;python&quot;)
+else:
+    histdir = os.path.join(cachedir, &quot;python&quot;)
+
+os.makedirs(histdir, exist_ok=True)
+histfile = os.path.join(histdir, &quot;history&quot;)
+
+hist_len = 0
+
+try:
+    readline.read_history_file(histfile)
+    hist_len = readline.get_current_history_length()
+except FileNotFoundError:
+    open(histfile, 'wb').close()
+
+
+def save(prev_hist_len, histfile):
+    new_hist_len = readline.get_current_history_length()
+    readline.set_history_length(-1)
+    readline.append_history_file(new_hist_len - prev_hist_len, histfile)
+
+
+atexit.register(save, hist_len, histfile)</pre></li>
           <li>Add (or export)
             <code>PYTHONSTARTUP</code>
             variable, i.e.
-            <code>export PYTHONSTARTUP=&quot;$XDG_CONFIG_HOME&quot;/python/startup.py</code></li>
-          <li>Create
-            <code>history</code>
-            file at
-            <code>&quot;$XDG_CACHE_HOME&quot;/python/</code></li>
-          <li>Reload the environment (logout should work)</li>
+            <code>export PYTHONSTARTUP=&quot;$XDG_CONFIG_HOME&quot;/python/startup.py</code>.</li>
+          <li>Create the history file at
+            <code>$XDG_CACHE_HOME/python/history</code>.</li>
+          <li>Reload the environment (logout should do).</li>
         </ul>
-        <h2 id="virtual-environments">Virtual environments</h2>
-        <p><em>You must use virtual environments for all your python development. It is not optional.</em></p>
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ python -m venv env
-</span></span><span style="display:flex;"><span>$ source env/bin/activate.fish <span style="color:#75715e"># depending on the shell of choice</span>
-</span></span><span style="display:flex;"><span>$ pip install number <span style="color:#75715e"># e.g.</span>
-</span></span><span style="display:flex;"><span>$ pip freeze &gt; requirements.txt <span style="color:#75715e"># to list all dependencies and their version into a file</span>
-</span></span><span style="display:flex;"><span>$ pip install -r requirements.txt <span style="color:#75715e"># to install all required dependencies</span>
-</span></span></code></pre></div>
+        <h2>Virtual environments</h2>
+        <p><strong>You must use virtual environments for all your python development. It is not optional.</strong></p>
+        <pre>$ python -m venv env
+$ source env/bin/activate.fish # depending on the shell of choice
+$ pip install number # e.g.
+$ pip freeze &gt; requirements.txt # to list all dependencies and their version into a file
+$ pip install -r requirements.txt # to install all required dependencies</pre>
+        <p><em>Note</em>
+          <time>November 18, 2023</time>
+          You should probably use
+          <a target="_blank" href="https://github.com/astral-sh/uv">uv</a>.</p>
+        <h2>Closing notes</h2>
+        <p>This is it for today. I hope you find this guide useful. As per usual, if you find any errors, or if you have some additional (important) tips to share, send me a mail at
+          <code>luka [at] ljudi [dot] org</code>. Cheers!</p>
       </article>
     </main>
     <div id="webring">
@@ -90,7 +87,7 @@
       <a href="https://webring.ljudi.org/im-feeling-lucky">I'm feeling lucky!</a>
       <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
     </div>
-    <footer id="footer">
+    <footer>
       Copyright © 2023-2025 Luka Ivanović
     </footer>
   </body>
