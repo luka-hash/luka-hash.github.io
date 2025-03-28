@@ -94,13 +94,12 @@ blockquote {
 }
 
 code {
-    border: 1px dashed var(--border-color);
-    border-radius: 4px;
-    padding: 4px;
+    font-family: "Adwaita Mono", monospace;
+    border-bottom: 1px dashed var(--border-color);
 }
 
 pre {
-    border: 1px dashed var(--border-color);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 8px;
 }
