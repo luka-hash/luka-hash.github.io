@@ -75,7 +75,7 @@ a {
     text-decoration: underline;
 }
 
-a[href^="https"]::after {
+a[href^="https"]:not([href^="https://luka.ljudi.org"])::after {
     content: "↗";
     margin-left: 4px;
 }
