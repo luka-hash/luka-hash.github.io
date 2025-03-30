@@ -102,4 +102,6 @@ pre {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 8px;
+	overflow-x: auto;
+	overflow-y: clip;
 }
