@@ -21,13 +21,19 @@
         <h1>Tar for Humans</h1>
         <time>August 22, 2023</time>
         <blockquote>
-          All user commands are prepended with &lsquo;$&rsquo; and all sudo commands are prepended with &lsquo;#&rsquo;. Commands that start with &lsquo;$ #&rsquo; are still user commands, but they are comments, they are not to be pasted.
+          All user commands are prepended with &lsquo;$&rsquo; and all sudo commands are prepended with
+                &lsquo;#&rsquo;. Commands that start with &lsquo;$ #&rsquo; are still user commands, but they are
+                comments, they are not to be pasted.
         </blockquote>
         <p><code>tar</code>
-          is a command used to convert a file or a group of files into an archive. It can also do other stuff with those archives, like listing the files inside the archive, extracting files, etc.</p>
+          is a command used to convert a file or a group of files into an archive. It can also do other stuff with
+                those archives, like listing the files inside the archive, extracting files, etc.</p>
         <p>To put it simply, at some point in your life as a linux/unix user, you will need to use
-          <code>tar</code>,  either to compress some files and send them to someone or to extract the files someone sent to you.</p>
-        <p>My plan for this guide is not only to give you the commands you need to use, but to actually explain those commands, so you don&rsquo;t have to reread this (or any other) guide again. With that in mind, we will be using GNU-style options, or long-form options. Why? Is it obvious what this option does?</p>
+          <code>tar</code>, either to compress some files and send them to someone or to extract the files someone
+                sent to you.</p>
+        <p>My plan for this guide is not only to give you the commands you need to use, but to actually explain
+                those commands, so you don&rsquo;t have to reread this (or any other) guide again. With that in mind, we
+                will be using GNU-style options, or long-form options. Why? Is it obvious what this option does?</p>
         <pre>$ tar -tavf example.tar.gz</pre>
         <p>No? That is why. :)</p>
         <h2>Using tar</h2>
@@ -36,22 +42,22 @@
           directory (in my
           <code>$HOME</code>) and copied the content of the go-build directory into it:</p>
         <pre>$ cd
-$ mkdir demo
-$ cp -r .cache/go-build/* demo/
-$ cd demo/
-$ ls -l</pre>
+                $ mkdir demo
+                $ cp -r .cache/go-build/* demo/
+                $ cd demo/
+                $ ls -l</pre>
         <p>and this is the output:</p>
         <pre>$ ls -l
-total 8
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 00
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 01
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 02
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 03
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 04
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 05
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 06
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 07
-drwxr-xr-x 1 luka luka   0 Aug 23 09:39 08</pre>
+                total 8
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 00
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 01
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 02
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 03
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 04
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 05
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 06
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 07
+                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 08</pre>
         <blockquote>
           Actual otput is bigger, I only copied the first 10 lines of it.
         </blockquote>
@@ -61,7 +67,8 @@ drwxr-xr-x 1 luka luka   0 Aug 23 09:39 08</pre>
         <ol>
           <li>create an archive (<code>--create</code>)</li>
           <li>print a list of files that are being archived (<code>--verbose</code>)</li>
-          <li>determine the compression method (program) based on the archive name extension (<code>--auto-compress</code>), in this case, it would be
+          <li>determine the compression method (program) based on the archive name extension
+                    (<code>--auto-compress</code>), in this case, it would be
             <code>gzip</code>.</li>
           <li>name an archive
             <code>go-build.tar.gz</code>
@@ -70,28 +77,30 @@ drwxr-xr-x 1 luka luka   0 Aug 23 09:39 08</pre>
         </ol>
         <p>Now that you have an archive, you can do anything with it, like - list the content of the archive:</p>
         <pre>$ tar --list --verbose --file go-build.tar.gz
-$ # or
-$ tar --list --file go-build.tar.gz</pre>
+                $ # or
+                $ tar --list --file go-build.tar.gz</pre>
         <p>Using
           <code>--verbose</code>
           options will report file permissions and ownership alongside of file names.
-Now that you have
+                Now that you have
           <em>verified</em>
           (in a way, at least) that all your files are archived, you should probably generate a
           <em>sum</em>
           of that file, so you can later verify that it is indeed that file.</p>
         <pre>$ sha256sum go-build.tar.gz &gt; go-build.tar.gz.sha256
-$ # and later you can check the integrity like so:
-$ sha256sum --check go-build.tar.gz.sha256
-$ # it should print `go-build.tar.gz: OK`</pre>
+                $ # and later you can check the integrity like so:
+                $ sha256sum --check go-build.tar.gz.sha256
+                $ # it should print `go-build.tar.gz: OK`</pre>
         <p>And finally, when you decide to extract files from the archive, you can use this command:</p>
         <pre>$ tar --extract --verbose --auto-compress --file go-build.tar.gz
-$ # this will extract the archive in the current working directory
-$ # in the case you want to extract it in another directory, you can do it like so:
-$ mkdir go-build &amp;&amp; tar --extract --verbose --auto-compress --directory go-build/ --file go-build.tar.gz</pre>
+                $ # this will extract the archive in the current working directory
+                $ # in the case you want to extract it in another directory, you can do it like so:
+                $ mkdir go-build &amp;&amp; tar --extract --verbose --auto-compress --directory go-build/ --file
+                go-build.tar.gz</pre>
         <p>And that&rsquo;s about it. Now you know how to use
           <code>tar</code>
-          to handle most of your day-to-day tasks. Of course, there are other options (many such options), some of them including (but not limited to):</p>
+          to handle most of your day-to-day tasks. Of course, there are other options (many such options), some of
+                them including (but not limited to):</p>
         <ul>
           <li><code>--append</code>
             : this adds a file to the existing archive (but the archive can not be compressed); e.g.
@@ -108,15 +117,20 @@ $ mkdir go-build &amp;&amp; tar --extract --verbose --auto-compress --directory 
           <li><code>--keep-old-files</code>
             : this tells
             <code>tar</code>
-            to treat situations where it tries to extract a file X into a directory where another file named X already exists as error</li>
+            to treat situations where it tries to extract a file X into a directory where another file named X
+                    already exists as error</li>
           <li><code>--skip-old-files</code>
             : this tells
             <code>tar</code>
-            to treat situations where it tries to extract a file X into a directory where another file named X already exists as non-errors, but to skip them silently</li>
+            to treat situations where it tries to extract a file X into a directory where another file named X
+                    already exists as non-errors, but to skip them silently</li>
         </ul>
-        <p>You also have the option to: update files, diff the archive and the filesystem, concatenate tar files to an archive, exclude specific files by name or pattern (or even from .gitignore and other vcs tools), follow hard and soft links and archive the files they point/refer to, extract files to stdout, etc.</p>
+        <p>You also have the option to: update files, diff the archive and the filesystem, concatenate tar files to
+                an archive, exclude specific files by name or pattern (or even from .gitignore and other vcs tools),
+                follow hard and soft links and archive the files they point/refer to, extract files to stdout, etc.</p>
         <h2>Closing notes</h2>
-        <p>This is it for today. I hope you find this guide useful. As per usual, if you find any errors, send me a mail at
+        <p>This is it for today. I hope you find this guide useful. As per usual, if you find any errors, send me a
+                mail at
           <code>luka [at] ljudi [dot] org</code>. Cheers!</p>
       </article>
     </main>
