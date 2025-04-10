@@ -1,0 +1,45 @@
+name: Deploy static content to Pages
+
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Update footers with date and commit id
+        run: |
+          COMMIT_ID=$(git rev-parse HEAD)
+          COMMIT_ID_SHORT=$(git rev-parse --short HEAD)
+          CURRENT_TIME=$(date -u '+%4Y-%m-%dT%H:%M:%S UTC')
+
+          find . -name "*.html" -exec sed -i "s|<\/footer>|<p>Last updated: $CURRENT_TIME</p><p>Deployed from commit <a href=\"${{ github.server_url }}/${{ github.repository }}/commit/$COMMIT_ID\">$COMMIT_ID_SHORT</a></p></footer>|g" {} \;
+
+      - name: Setup Github Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
