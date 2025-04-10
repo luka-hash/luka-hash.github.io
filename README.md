@@ -8,6 +8,7 @@ Generated with [Hugo](https://gohugo.io/) but modified by hand.
     - Improve headings
     - Improve differences between headings
     - Improve readability
+- Make pre-commit hook to format html and css using superhtml
 
 ### Licence
 
