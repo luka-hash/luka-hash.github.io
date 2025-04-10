@@ -12,21 +12,24 @@
   <body>
     <header>
       <h1>
-        <a href="/">Luka&#39;s web attic</a>
+        <a href="/">Luka&apos;s web attic</a>
       </h1>
       <a href="/about/" title="about">about</a>
     </header>
     <main>
       <article>
         <h1>Super basic Git starter</h1>
-        <time>August 21, 2023</time>
+        <div>Published:
+          <time datetime="2023-08-21">August 21, 2023</time></div>
+        <div>Updated:
+          <time datetime="2025-04-10">April 10, 2025</time></div>
         <blockquote>
-          This page is a WIP. I plan on updating it time-to-time. You noticed a mistake? Send me a mail at
+          This page is a WIP. I plan on updating it occasionally. You noticed a mistake? Send me a mail at
           <code>luka [at] ljudi [dot] org</code>. Cheers!
         </blockquote>
         <h2>What is git?</h2>
         <p>Git is a FOSS distributed version control system.</p>
-        <p>Or, to put it simply, a tool to keep a track of changes on your projects (mostly programming projects, but git works on non-text files too).</p>
+        <p>Or, to put it simply, a tool to keep a track of changes on your projects (mostly programming projects, but git can be used for other types of files, with varying degrees of success).</p>
         <h2>Show me</h2>
         <p>First - install
           <a target="_blank" href="https://git-scm.com/">git</a>. On Arch, if you use
@@ -47,7 +50,7 @@ $ git config user.name &quot;Linus Torvalds&quot;</pre>
           or
           <a target="_blank" href="https://codeberg.org">codeberg</a>. When you do that, you will get an url that will point to that repository. Now you need to set the remote url of your local project to that remote repository.</p>
         <blockquote>
-          You don&rsquo;t need to do this if you cloned a directory.
+          You don&apos;t need to do this if you cloned a directory.
         </blockquote>
         <pre>$ git remote add origin &lt;url&gt;
 $ git branch -M main</pre>
@@ -55,10 +58,10 @@ $ git branch -M main</pre>
         <pre>$ git add .
 $ git commit
 $ git push -u origin main</pre>
-        <p>That&rsquo;s about it, at least for the start.</p>
+        <p>That&apos;s about it, at least for the start.</p>
         <h2>Stage!? Commit?!</h2>
-        <p>If you are confused by some terms I mentioned, let me try to explain some things.</p>
-        <p>At every moment, there are 3 &rsquo;trees&rsquo; in your git project:</p>
+        <p>If you are confused by some of the terms I&apos;ve mentioned, let me try to explain it.</p>
+        <p>At every moment, there are 3 &apos;trees&apos; in your git project:</p>
         <ol>
           <li>working directory : holds actual files</li>
           <li>index (stage) : staging area (tree with changes)</li>
@@ -105,6 +108,9 @@ $ # creates a 'snapshot' of the project</pre>
           </li>
           <li>
             collaborating efficiently
+          </li>
+          <li>
+            writting propper commit messages
           </li>
         </ul>
         <p>Stay tuned! Cheers!</p>

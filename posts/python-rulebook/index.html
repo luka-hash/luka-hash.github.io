@@ -12,17 +12,20 @@
   <body>
     <header>
       <h1>
-        <a href="/">Luka&#39;s web attic</a>
+        <a href="/">Luka&apos;s web attic</a>
       </h1>
       <a href="/about/" title="about">about</a>
     </header>
     <main>
       <article>
         <h1>Python - rulebook</h1>
-        <time>November 18, 2023</time>
-        <p>Fortunately or not, python is unavoidable. So we need some rules to keep ourselves sane while using it.</p>
+        <div>Published:
+          <time datetime="2023-11-18">November 18, 2023</time></div>
+        <div>Updated:
+          <time datetime="2025-04-10">April 10, 2025</time></div>
+        <p>Fortunately or not, Python is unavoidable. So we need some rules to keep ourselves sane while using it.</p>
         <h2>XDG and home dir</h2>
-        <p>First, let&rsquo;s remove the clutter:</p>
+        <p>First, let&apos;s remove the clutter:</p>
         <ul>
           <li>Create
             <code>$XDG_CONFIG_HOME/python/startup.py</code>
@@ -61,9 +64,11 @@ atexit.register(save, hist_len, histfile)</pre></li>
           <li>Add (or export)
             <code>PYTHONSTARTUP</code>
             variable, i.e.
-            <code>export PYTHONSTARTUP=&quot;$XDG_CONFIG_HOME&quot;/python/startup.py</code>.</li>
+            <code>export PYTHONSTARTUP=&quot;$XDG_CONFIG_HOME&quot;/python/startup.py</code>
+            .</li>
           <li>Create the history file at
-            <code>$XDG_CACHE_HOME/python/history</code>.</li>
+            <code>$XDG_CACHE_HOME/python/history</code>
+            .</li>
           <li>Reload the environment (logout should do).</li>
         </ul>
         <h2>Virtual environments</h2>
@@ -74,7 +79,7 @@ $ pip install number # e.g.
 $ pip freeze &gt; requirements.txt # to list all dependencies and their version into a file
 $ pip install -r requirements.txt # to install all required dependencies</pre>
         <p><em>Note</em>
-          <time>November 18, 2023</time>
+          <time datetime="2025-04-10">April 10, 2025</time>
           You should probably use
           <a target="_blank" href="https://github.com/astral-sh/uv">uv</a>.</p>
         <h2>Closing notes</h2>
