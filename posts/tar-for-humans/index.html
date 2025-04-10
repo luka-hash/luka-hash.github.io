@@ -12,56 +12,60 @@
   <body>
     <header>
       <h1>
-        <a href="/">Luka&#39;s web attic</a>
+        <a href="/">Luka&apos;s web attic</a>
       </h1>
       <a href="/about/" title="about">about</a>
     </header>
     <main>
       <article>
         <h1>Tar for Humans</h1>
-        <time>August 22, 2023</time>
-        <blockquote>
-          All user commands are prepended with &lsquo;$&rsquo; and all sudo commands are prepended with
-                &lsquo;#&rsquo;. Commands that start with &lsquo;$ #&rsquo; are still user commands, but they are
-                comments, they are not to be pasted.
-        </blockquote>
+        <div>Published:
+          <time datetime="2025-04-10">August 22, 2023</time></div>
+        <div>Updated:
+          <time datetime="2025-04-10">April 10, 2025</time></div>
         <p><code>tar</code>
-          is a command used to convert a file or a group of files into an archive. It can also do other stuff with
-                those archives, like listing the files inside the archive, extracting files, etc.</p>
-        <p>To put it simply, at some point in your life as a linux/unix user, you will need to use
-          <code>tar</code>, either to compress some files and send them to someone or to extract the files someone
+          is an archiving utility - a command used to convert a file or a group of files into an archive. Additionally, it can also do other stuff with
+                those archives, like listing the files inside the archive, comparing them, etc.</p>
+        <p>At some point in your life as a Linux/Unix user, you'll need to use
+          <code>tar</code>, either to compress files and send them to someone or to extract the files someone has
                 sent to you.</p>
         <p>My plan for this guide is not only to give you the commands you need to use, but to actually explain
-                those commands, so you don&rsquo;t have to reread this (or any other) guide again. With that in mind, we
-                will be using GNU-style options, or long-form options. Why? Is it obvious what this option does?</p>
+                those commands, so you don&apos;t have to reread this (or any other
+          <code>tar</code>) guide again. With that in mind, we
+                will be using GNU-style options (or flags), or long-option style options. Why? Is it obvious what this option does?</p>
         <pre>$ tar -tavf example.tar.gz</pre>
         <p>No? That is why. :)</p>
         <h2>Using tar</h2>
-        <p>For the purposes of this guide, I created a simple
+        <p>For the purposes of this guide, I've created a simple
           <code>demo</code>
           directory (in my
           <code>$HOME</code>) and copied the content of the go-build directory into it:</p>
+        <blockquote>
+          Note: All user commands are prepended with &apos;$&apos; and all sudo commands are prepended with
+                &apos;#&apos;. Commands that start with &apos;$ #&apos; are still user commands, but they are
+                comments, they are used to explain the purpose of the command or to provide additional information.
+        </blockquote>
         <pre>$ cd
-                $ mkdir demo
-                $ cp -r .cache/go-build/* demo/
-                $ cd demo/
-                $ ls -l</pre>
+$ mkdir demo
+$ cp -r .cache/go-build/* demo/
+$ cd demo/
+$ ls -l</pre>
         <p>and this is the output:</p>
         <pre>$ ls -l
-                total 8
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 00
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 01
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 02
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 03
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 04
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 05
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 06
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 07
-                drwxr-xr-x 1 luka luka 0 Aug 23 09:39 08</pre>
+total 8
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 00
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 01
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 02
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 03
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 04
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 05
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 06
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 07
+drwxr-xr-x 1 luka luka 0 Aug 23 09:39 08</pre>
         <blockquote>
           Actual otput is bigger, I only copied the first 10 lines of it.
         </blockquote>
-        <p>Now to create an archive containing all those files, we can run this:</p>
+        <p>Now to create an archive containing all those files, we can run use this command:</p>
         <pre>$ tar --create --verbose --auto-compress --file go-build.tar.gz ./*</pre>
         <p>This will:</p>
         <ol>
@@ -77,8 +81,8 @@
         </ol>
         <p>Now that you have an archive, you can do anything with it, like - list the content of the archive:</p>
         <pre>$ tar --list --verbose --file go-build.tar.gz
-                $ # or
-                $ tar --list --file go-build.tar.gz</pre>
+$ # or
+$ tar --list --file go-build.tar.gz</pre>
         <p>Using
           <code>--verbose</code>
           options will report file permissions and ownership alongside of file names.
@@ -88,16 +92,16 @@
           <em>sum</em>
           of that file, so you can later verify that it is indeed that file.</p>
         <pre>$ sha256sum go-build.tar.gz &gt; go-build.tar.gz.sha256
-                $ # and later you can check the integrity like so:
-                $ sha256sum --check go-build.tar.gz.sha256
-                $ # it should print `go-build.tar.gz: OK`</pre>
+$ # and later you can check the integrity like so:
+$ sha256sum --check go-build.tar.gz.sha256
+go-build.tar.gz: OK</pre>
         <p>And finally, when you decide to extract files from the archive, you can use this command:</p>
         <pre>$ tar --extract --verbose --auto-compress --file go-build.tar.gz
-                $ # this will extract the archive in the current working directory
-                $ # in the case you want to extract it in another directory, you can do it like so:
-                $ mkdir go-build &amp;&amp; tar --extract --verbose --auto-compress --directory go-build/ --file
-                go-build.tar.gz</pre>
-        <p>And that&rsquo;s about it. Now you know how to use
+$ # this will extract the archive in the current working directory
+$ # in the case you want to extract it in another directory, you can do it like so:
+$ mkdir go-build &amp;&amp; tar --extract --verbose --auto-compress --directory go-build/ --file
+go-build.tar.gz</pre>
+        <p>And that&apos;s about it. Now you know how to use
           <code>tar</code>
           to handle most of your day-to-day tasks. Of course, there are other options (many such options), some of
                 them including (but not limited to):</p>
