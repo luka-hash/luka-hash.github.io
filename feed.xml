@@ -2,10 +2,10 @@
     <channel>
         <title>Luka's web attic</title>
         <link>https://luka.ljudi.org</link>
+        <copyright>Copyright 2023-2025 Luka Ivanović</copyright>
         <description>Luka's ramblings</description>
         <language>en</language>
-        <lastBuildDate>2025-04-11T19:01:10 UTC</lastBuildDate>
-        <atom:link href="https://luka.ljudi.org/feed.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Fri, 11 Apr 2025 21:17:04 +0200</lastBuildDate>
         <!--
         <item>
             <title></title>
