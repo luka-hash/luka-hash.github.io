@@ -1,0 +1,47 @@
+<rss version="2.0">
+    <channel>
+        <title>Luka's web attic</title>
+        <link>https://luka.ljudi.org</link>
+        <description>Luka's ramblings</description>
+        <language>en</language>
+        <lastBuildDate>2025-04-11T19:01:10 UTC</lastBuildDate>
+        <atom:link href="https://luka.ljudi.org/feed.xml" rel="self" type="application/rss+xml" />
+        <!--
+        <item>
+            <title></title>
+            <link></link>
+            <pubDate></pubDate>
+            <guid></guid>
+            <description></description>
+        </item>
+        -->
+        <item>
+            <title>New beginnings</title>
+            <link>https://luka.ljudi.org/posts/new-beginnings/</link>
+            <pubDate>2023-08-21T00:00:00 UTC</pubDate>
+            <guid>https://luka.ljudi.org/posts/new-beginnings/</guid>
+            <description>Finally beating procrastination around blogging.</description>
+        </item>
+        <item>
+            <title>Super basic Git starter</title>
+            <link>https://luka.ljudi.org/posts/super-basic-git-starter/</link>
+            <pubDate>2023-08-21T01:00:00 UTC</pubDate>
+            <guid>https://luka.ljudi.org/posts/super-basic-git-starter/</guid>
+            <description>Git guide for beginners (WIP).</description>
+        </item>
+        <item>
+            <title>Tar for humans</title>
+            <link>https://luka.ljudi.org/posts/tar-for-humans/</link>
+            <pubDate>2023-08-22T00:00:00 UTC</pubDate>
+            <guid>https://luka.ljudi.org/posts/tar-for-humans/</guid>
+            <description>What is tar and how to use it.</description>
+        </item>
+        <item>
+            <title>Python - rulebook</title>
+            <link>https://luka.ljudi.org/posts/python-rulebook/</link>
+            <pubDate>2023-11-18T00:00:00 UTC</pubDate>
+            <guid>https://luka.ljudi.org/posts/python-rulebook/</guid>
+            <description>How to setup environment for Python development.</description>
+        </item>
+    </channel>
+</rss>
