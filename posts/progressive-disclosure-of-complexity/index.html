@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Just a small in-between blog">
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="https://luka.ljudi.org/posts/tar-for-humans/">
+    <title>Progressive disclosure of complexity in programming language design</title>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a href="/">Luka&apos;s web attic</a>
+      </h1>
+      <a href="/about/" title="about">about</a>
+    </header>
+    <main>
+      <article>
+        <h1>Progressive disclosure of complexity in programming language design</h1>
+        <div>Published:
+          <time datetime="2025-04-17">April 17, 2025</time></div>
+        <hr>
+        <p>Progressive disclosure of complexity (PDC) is a concept, originating in the field of UI design, that dictates that the user interface should evolve naturally, from simple to complex, with the main goal of reducing cognitive load and increasing ease of use.</p>
+        <blockquote>Note: Original definition might be something like:
+          <em>technique that sequences information and actions across several screens in order to reduce feelings of overwhelm for the user</em>; but one can hopefully see how this generalizes outside of the original field.</blockquote>
+        <p>A system designed &apos;using&apos; PDC should allow beginners to use the (core of the) system without feeling frustrated,
+          <em>and</em>
+          allow powerusers to accomplish advanced goals.</p>
+        <p>The principle is used outside the UI/UX field, notably in the field of the programming-language theory (this is the context of PDC the rest of the article is concerned about). In this context, the aforementioned interface is the language itself - and not just the syntax but semantics as well.</p>
+        <h3>A closer look</h3>
+        <p>Since PDC is a &apos;general&apos; principle, there is no single way to implement it or use it, but there are some things one should follow, most notably:</p>
+        <span><strong>Simple things should be simple and complex things should be possible</strong></span>
+        <p>Let&apos;s have a look at a traditional example -
+          <code>Hello world!</code>
+          program.</p>
+        <pre lang="java">
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello world!");
+    }
+}</pre>
+        <p>So in order to see text &quot;Hello world!&quot; on the screen, you need to learn (to some degree):
+          <ul>
+            <li>What are classes?</li>
+            <li>What is
+              <code>public</code>? (Is there a
+              <code>private</code>
+              too? What else is there for that context?)</li>
+            <li>What are static functions?</li>
+            <li>What are functions, and how do we call them?</li>
+            <li>How to accept command line arguments? And also, what is the syntax for arrays?</li>
+            <li>There is &apos;module&apos; system, and there is System module (or is it a library after all?)</li>
+            <li>How to compile and run this program?</li>
+          </ul></p>
+        <p>Compare that with the Python alternative:</p>
+        <pre lang="python">
+print("Hello world!")</pre>
+        <p>This seems a more reasonable solution...</p>
+        <p>Now, on the
+          <em>complex things being possible</em>, it is crucial to remember that each stop along the complexity axis is incremental. It is not enough for &apos;hello world&apos; to be simple if something like reading input requires understanding some obscure part of the language. Let&apos;s try that, again, both with Java and Python. Now here is the goal: ask user for the name, let them enter the name, and then greet them.</p>
+        <pre lang="python">
+name = input("Hi, what is your name?\n")
+print("Hello "+ name + "!")
+</pre>
+        <p>
+          Let's see what is new:
+          <ul>
+            <li>How to create variables. (<code>name = ...</code>)</li>
+            <li>How to take user input. (<code>input(...)</code>)</li>
+            <li>In print function, there are some special character that represents a newline. (<code>&quot;\n&quot;</code>)</li>
+          </ul>
+        </p>
+        <p>
+          In reality, we could&apos;ve offered an even simpler example (e.g. we could&apos;ve avoided a newline character introduction), but from my experience in teaching Python to beginners, this is completely understandable. Now let&apos;s look at the Java alternative:
+        </p>
+        <pre lang="java">
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Hi, what is your name?");
+        String name = scanner.nextLine();
+
+        Greeter greeter = new Greeter(name);
+        greeter.greet();
+    }
+}
+
+class Greeter {
+    private String name;
+
+    public Greeter(String name) {
+        this.name = name;
+    }
+
+    public void greet() {
+        System.out.println("Hello "+ this.name);
+    }
+}</pre>
+        <p>
+          What even is going on here??
+          <ul>
+            <li>Another library, this time
+              <code>Scanner</code>
+              presumably for &apos;scanning&apos; user input.</li>
+            <li>How to create classes.</li>
+            <li>How to create a class constructor, and what even is constructor.</li>
+            <li>How to create methods.</li>
+            <li>How to create class fields/properties.</li>
+            <li>How to instantiate a new class?</li>
+            <li>Aha, now there is also a
+              <code>System.in</code>.</li>
+            <li>How to define a variable.</li>
+            <li>How to call methods on objects.</li>
+            <li>If you by accident make
+              <code>Greeter</code>
+              class public, you will receive an error indicating that the solution is to create another file for that class.</li>
+            <li>Also, we&apos;ve used a
+              <code>Greeter</code>
+              before we defined it, so forward references are supported.</li>
+          </ul>
+        </p>
+        <blockquote>Note: Readers experienced with Java might complain that this example is crafted in a bad faith, after all, there was no real reason for us to define a whole new class
+          <code>Greeter</code>. But I&apos;ll let you know that this example is modified (as in
+          <em>simplified</em>) version of the top result of the search &apos;java greeter&apos;. It is not untrue to say that this is a culture in Java.</blockquote>
+        <h3>Conclusion</h3>
+        <p>Following the PDC does not mean that the system is well designed - there are other aspects to a language other than &apos;being easy to use for beginners&apos;.
+          <em>But</em>, given how many resources we, as a society, invest in teaching programming and how important the goal is, it would probably be wise to spend some resources on thinking how we can make it easier for people to really grok the subject.</p>
+        <p>Additionally, signs of poor PDC show themselves in other places where affected group is not just &apos;beginners&apos; but more advanced users. PDC is not just a design principle, not just a teaching aid - it is a philosophy that can make powerful systems more humane.</p>
+        <p>The field of PLT is not solved. Demand is
+          <strong>huuuuugeeeee</strong>. We should do better. We deserve better.</p>
+        <hr>
+        <p>This is it for today. I hope you find this article useful. As per usual, if you find any errors, send me a
+                mail at
+          <code>luka [at] ljudi [dot] org</code>. Cheers!</p>
+      </article>
+    </main>
+    <div id="webring">
+      <a href="https://webring.ljudi.org/previous?member=https://luka.ljudi.org">Previous</a>
+      <a href="https://webring.ljudi.org/im-feeling-lucky">I'm feeling lucky!</a>
+      <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
+    </div>
+    <footer>
+      Copyright © 2023-2025 Luka Ivanović
+    </footer>
+  </body>
+</html>
