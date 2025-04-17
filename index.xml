@@ -36,5 +36,12 @@
             <guid>https://luka.ljudi.org/posts/python-rulebook/</guid>
             <description>How to setup environment for Python development.</description>
         </item>
+		<item>
+            <title>Progressive disclosure of complexity in programming language design</title>
+            <link>https://luka.ljudi.org/posts/progressive-disclosure-of-complexity/</link>
+            <pubDate>Thursday, 17 Apr 2025 00:00:00 +0000</pubDate>
+            <guid>https://luka.ljudi.org/posts/progressive-disclosure-of-complexity/</guid>
+            <description>How to design programming languages such that they are easy to use and understand.</description>
+		</item>
     </channel>
 </rss>
