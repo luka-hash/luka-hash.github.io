@@ -61,6 +61,7 @@ footer {
     font-weight: 300;
     margin-top: 2rem;
     padding-bottom: 4rem;
+    border-top: 1px solid var(--border-color);
 }
 
 ul>time {
@@ -76,7 +77,7 @@ a {
     text-decoration: underline;
 }
 
-a[href^="https"]:not([href^="https://luka.ljudi.org"])::after {
+a[href^="mailto"]::after, a[href^="https"]:not([href^="https://luka.ljudi.org"])::after {
     content: "↗";
     margin-left: 4px;
 }
