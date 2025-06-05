@@ -43,5 +43,12 @@
             <guid>https://luka.ljudi.org/posts/progressive-disclosure-of-complexity/</guid>
             <description>How to design programming languages such that they are easy to use and understand.</description>
 		</item>
+		<item>
+            <title>Proof of the associativity of function composition</title>
+            <link>https://luka.ljudi.org/posts/proof-of-the-associativity-of-function-composition/</link>
+            <pubDate>Friday, 06 Jun 2025 00:00:00 +0000</pubDate>
+            <guid>https://luka.ljudi.org/posts/proof-of-the-associativity-of-function-composition/</guid>
+            <description>Simple proof of the associativity of function composition.</description>
+		</item>
     </channel>
 </rss>
