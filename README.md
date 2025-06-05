@@ -1,6 +1,6 @@
 # blog
 
-Generated with [Hugo](https://gohugo.io/) but modified by hand.
+My blog.
 
 ## TODO
 
