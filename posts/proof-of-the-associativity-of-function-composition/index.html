@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Just a small in-between blog">
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="https://luka.ljudi.org/posts/proof-of-the-associativity-of-function-composition/">
+    <title>Proof of the associativity of function composition</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a href="/">Luka&apos;s web attic</a>
+      </h1>
+      <a href="/about/" title="about">about</a>
+    </header>
+    <main>
+      <article>
+        <h1>Proof of the associativity of function composition</h1>
+        <div>Published:
+          <time datetime="2025-06-06">June 06, 2025</time></div>
+        <!--      <div>Updated: -->
+        <!-- <time datetime="{{ Date (YYYY-MM-DD) }}">{{ Date (Month DD,YYYY) }}</time></div> -->
+        <hr>
+        <h2>
+          Introduction
+        </h2>
+        <p>
+          First, let&apos;s define function composition.
+        </p>
+        <p>
+          Let \(A\), \(B\) and \(C\) be sets, and let \(f\) and \(g\) be functions defined as:
+        </p>
+        <p>
+          \[
+			\begin{align}
+			f: A \to B\\
+			g: B \to C\\
+			\end{align}
+			\]
+        </p>
+        <p>
+          We define function composition (denoted with a composition operator \(\circ\)) as a function that takes two functions, \(f\) and \(g\), and returns a new function, \(h: A \to C\), such that
+        </p>
+        <p>
+          \[
+			\begin{align}
+			\forall x \in A,\ \ h(x) = (g \circ f)(x) = g(f(x))
+			\end{align}
+			\]
+        </p>
+        <blockquote>
+          You can think of (or pronounce) \(\circ\) as &quot;follows&quot;. So, \(g \circ f\) is &quot;\(g\) follows \(f\)&quot;. You first apply \(f\) to \(x\), and then \(g\) to the output of applying \(f\) to \(x\).
+        </blockquote>
+        <p>
+          Naturally, composition \(g \circ f\) is only valid/meaningful \(iff\) the codomain (output) of \(f\) equals the domain (input) of \(g\) (or at least if the the former is an improper subset of the latter).
+        </p>
+        <hr>
+        <p>
+          Now, let&apos;s prove that function composition is associative.
+        </p>
+        <p>
+          Let \(A\), \(B\), \(C\), \(D\) be sets, and let \(f\), \(g\), \(h\) be functions defined as:
+        </p>
+        <p>
+          \[
+			\begin{align}
+			f: A \to B\\
+			g: B \to C\\
+			h: C \to D
+			\end{align}
+			\]
+        </p>
+        <p>
+          then
+        </p>
+        <p>
+          \[
+			h \circ (g \circ f) = (h \circ g) \circ f
+			\]
+        </p>
+        <h2>
+          Proof:
+        </h2>
+        <p>
+          Let \(x \in A\). Then
+        </p>
+        <p>
+          \[
+			\begin{align}
+			(h \circ (g \circ f))(x)\\
+			= h((g \circ f)(x))\\
+			= h(g(f(x)))
+			\end{align}
+			\]
+        </p>
+        <p>
+          Now let
+        </p>
+        <p>
+          \[
+			y = f(x)
+			\]
+        </p>
+        <p>
+          and put that back in
+        </p>
+        <p>
+          \[
+			\begin{align}
+			h(g(f(x)))\\
+			=h(g(y))\\
+			=(h \circ g)(y)\\
+			\end{align}
+			\]
+        </p>
+        <p>
+          Now lets define a temporary function \(e: B \to D\) as
+        </p>
+        <p>
+          \[
+			e = h \circ g
+			\]
+        </p>
+        <p>
+          Let&apos;s put that back in and also replace \(y\) with \(f(x)\)
+        </p>
+        <p>
+          \[
+			\begin{align}
+			(h \circ g)(y)\\
+			=e(y)\\
+			=e(f(x))\\
+			=(e \circ f)(x)\\
+			\end{align}
+			\]
+        </p>
+        <p>
+          Let&apos;s now replace \(e\) with \(h \circ g\)
+        </p>
+        <p>
+          \[
+			\begin{align}
+			(e \circ f)(x)\\
+			=((h \circ g) \circ f)(x)\\
+			\\
+			\blacksquare
+			\end{align}
+			\]
+        </p>
+        <hr>
+        <p>
+          Naturally, the presented proof is only one of many possible proofs; another, shorter, is:
+        </p>
+        <p>
+          Let \(A\), \(B\), \(C\), \(D\) be sets, and let \(f\), \(g\), \(h\) be functions defined as:
+        </p>
+        <p>
+          \[
+			\begin{align}
+			f: A \to B\\
+			g: B \to C\\
+			h: C \to D
+			\end{align}
+			\]
+        </p>
+        <p>
+          Then
+        </p>
+        <p>
+          \[
+			\begin{align}
+			\forall x \in A\\
+			\\
+			(h \circ (g \circ f))(x) = h((g \circ f)(x)) = h(g(f(x)))\\
+			\\
+			((h \circ g) \circ f)(x) = (h \circ g)(f(x)) = h(g(f(x)))\\
+			\\
+			\blacksquare
+			\end{align}
+			\]
+        </p>
+        <hr>
+        <p>
+          All this is to prove the essence of associativity - where you place the parentheses doesn&apos;t matter.
+        </p>
+        <p>
+          \[
+			\begin{align}
+			\forall x \in A\\
+			\\
+			(h \circ (g \circ f))(x) = ((h \circ g) \circ f)(x) = (h \circ g \circ f)(x) = h(g(f(x)))
+			\end{align}
+			\]
+        </p>
+        <hr>
+        <p>This is it for today. I hope you find this article useful. As per usual, if you find any errors, send me a
+                mail at
+          <code>luka [at] ljudi [dot] org</code>. Cheers!</p>
+      </article>
+    </main>
+    <div id="webring">
+      <a href="https://webring.ljudi.org/previous?member=https://luka.ljudi.org">Previous</a>
+      <a href="https://webring.ljudi.org/im-feeling-lucky">I&apos;m feeling lucky!</a>
+      <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
+    </div>
+    <footer>
+      <p>
+        Copyright © 2023-2025 Luka Ivanović
+      </p>
+      <p>
+        Contact me via
+        <a href="mailto:luka@ljudi.org">email</a>,
+        <a href="https://bsky.app/profile/luka.ljudi.org">bluesky</a>, or
+        <a href="https://github.com/luka-hash">github</a>.
+      </p>
+      <p>
+        Subscribe to the
+        <a href="https://luka.ljudi.org/index.xml">RSS feed</a>.
+      </p>
+    </footer>
+  </body>
+</html>
