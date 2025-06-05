@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Just a small in-between blog">
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="canonical" href="https://luka.ljudi.org/posts/{{ CanonicalName }}/">
+	<title>{{ Title }}</title>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a href="/">Luka&apos;s web attic</a>
+      </h1>
+      <a href="/about/" title="about">about</a>
+    </header>
+    <main>
+      <article>
+		<h1>{{ Heading }}</h1>
+        <div>Published:
+          <time datetime="{{ Date (YYYY-MM-DD) }}">{{ Date (Month DD,YYYY) }}</time></div>
+        <div>Updated:
+			<time datetime="{{ Date (YYYY-MM-DD) }}">{{ Date (Month DD,YYYY) }}</time></div>
+        <hr>
+		{{ Content }}
+        <hr>
+        <p>This is it for today. I hope you find this article useful. As per usual, if you find any errors, send me a
+                mail at
+          <code>luka [at] ljudi [dot] org</code>. Cheers!</p>
+      </article>
+    </main>
+    <div id="webring">
+      <a href="https://webring.ljudi.org/previous?member=https://luka.ljudi.org">Previous</a>
+      <a href="https://webring.ljudi.org/im-feeling-lucky">I&apos;m feeling lucky!</a>
+      <a href="https://webring.ljudi.org/next?member=https://luka.ljudi.org">Next</a>
+    </div>
+    <footer>
+      <p>
+        Copyright © 2023-2025 Luka Ivanović
+      </p>
+      <p>
+        Contact me via
+        <a href="mailto:luka@ljudi.org">email</a>,
+        <a href="https://bsky.app/profile/luka.ljudi.org">bluesky</a>, or
+        <a href="https://github.com/luka-hash">github</a>.
+      </p>
+      <p>
+        Subscribe to the
+        <a href="https://luka.ljudi.org/index.xml">RSS feed</a>.
+      </p>
+    </footer>
+  </body>
+</html>
