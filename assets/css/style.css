@@ -78,7 +78,11 @@ a {
     text-decoration: underline;
 }
 
-a[href^="mailto"]::after,
+a[href^="mailto"]::after {
+    content: "📧";
+    margin-left: 4px;
+}
+
 a[href^="https"]:not([href^="https://luka.ljudi.org"])::after {
     content: "↗";
     margin-left: 4px;
