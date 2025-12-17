@@ -21,6 +21,8 @@
         <h1>Progressive disclosure of complexity in programming language design</h1>
         <div>Published:
           <time datetime="2025-04-17">April 17, 2025</time></div>
+        <div>Updated:
+          <time datetime="2025-12-17">December 17, 2025</time></div>
         <hr>
         <p>Progressive disclosure of complexity (PDC) is a concept, originating in the field of UI design, that dictates that the user interface should evolve naturally, from simple to complex, with the main goal of reducing cognitive load and increasing ease of use.</p>
         <blockquote>Note: Original definition might be something like:
@@ -126,12 +128,23 @@ class Greeter {
         <blockquote>Note: Readers experienced with Java might complain that this example is crafted in a bad faith, after all, there was no real reason for us to define a whole new class
           <code>Greeter</code>. But I&apos;ll let you know that this example is modified (as in
           <em>simplified</em>) version of the top result of the search &apos;java greeter&apos;. It is not untrue to say that this is a culture in Java.</blockquote>
-        <h3>Conclusion</h3>
+        <h3>&quot;Conclusion&quot;</h3>
         <p>Following the PDC does not mean that the system is well designed - there are other aspects to a language other than &apos;being easy to use for beginners&apos;.
           <em>But</em>, given how many resources we, as a society, invest in teaching programming and how important the goal is, it would probably be wise to spend some resources on thinking how we can make it easier for people to really grok the subject.</p>
         <p>Additionally, signs of poor PDC show themselves in other places where affected group is not just &apos;beginners&apos; but more advanced users. PDC is not just a design principle, not just a teaching aid - it is a philosophy that can make powerful systems more humane.</p>
-        <p>The field of PLT is not solved. Demand is
-          <strong>huuuuugeeeee</strong>. We should do better. We deserve better.</p>
+        <p>We can do so much better...</p>
+        <hr>
+        <span><strong>Update</strong> (<time datetime="2025-12-17">December 17, 2025</time>):</span>
+        <p>
+          With the latest Java release (version 25), this is now a valid program:
+        </p>
+        <pre lang="java">
+void main() {
+    IO.println("Hello world!");
+}</pre>
+        <p>
+          Notice how there are no classes, no <em>System.out.println</em>, no <em>public static</em> thing... It took them almost 30 years to finally admit that their language is nuts. Though, have in mind that this change is (AFAICT) mostly just a syntactic sugar, and it doesn&apos;t change the fundamental nature of the language.
+        </p>
         <hr>
         <p>This is it for today. I hope you find this article useful. As per usual, if you find any errors, or you want to
           <em>comment</em>
